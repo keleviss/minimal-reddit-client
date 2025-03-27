@@ -1,0 +1,25 @@
+.SearchBarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4d4d4d81;
+  border-radius: 999px;
+  border: 1px solid #F4F4F4;
+  padding: 0.5rem 0.8rem;
+  width: 50%;
+}
+
+.SearchInput {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: whitesmoke;
+  font-size: 1.05rem;
+  padding: 0 0.5rem;
+}
+
+.SearchIcon:hover,
+.XIcon:hover {
+  cursor: pointer;
+}
