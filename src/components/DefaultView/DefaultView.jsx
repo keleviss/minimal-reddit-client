@@ -1,12 +1,10 @@
-import HotPosts from "../../features/HotPosts/HotPosts";
-import MainPosts from "../../features/MainPosts/MainPosts";
+import Posts from "../../features/Posts/Posts";
 import styles from "./DefaultView.module.css";
 
 export default function DefaultView() {
   return (
     <main style={styles.defaultView}>
-      <HotPosts />
-      <MainPosts />
+      <Posts />
     </main>
   );
 }
