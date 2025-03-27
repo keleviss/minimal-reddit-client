@@ -1,0 +1,18 @@
+.NavBarContainer {
+  width: 100%;
+  padding: 1rem 0;
+  background-color: #303030;
+  display: flex;
+  justify-content: center;
+}
+
+.NavBar {
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.NavBarLogo {
+  color: #FF3C00;
+}
