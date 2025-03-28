@@ -14,5 +14,5 @@
 }
 
 .NavBarLogo {
-  color: #FF3C00;
+  color: var(--orange-highlight);
 }
