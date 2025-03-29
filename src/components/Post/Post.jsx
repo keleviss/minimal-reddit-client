@@ -1,4 +1,5 @@
 import Button from "../Button/Button";
+import PostHeader from "../PostHeader/PostHeader";
 import { timeDiff } from "../../utils/timeDifference";
 
 function fixRedditUrl(url) {
@@ -10,31 +11,37 @@ function fixRedditUrl(url) {
 
 export default function Post({ postData }) {
 
+  const created = timeDiff(postData.created, Math.floor(Date.now() / 1000));
+
   return (
-    <div className="flex flex-col gap-4 py-4 px-4 mb-12 rounded-2xl hover:bg-stone-100">
-      <div className="flex items-center gap-2">
-        <div><img className="w-8 rounded-full" src={postData.subredditImg} alt="" /></div>
-        <span className="text-xs font-semibold">r/{postData.subreddit}</span>
-        <span>-</span>
-        <span className="text-xs">{timeDiff(postData.created, Math.floor(Date.now() / 1000))}</span>
-      </div>
-      <h2 className="font-bold">{postData.title}</h2>
+    <div className="flex flex-col gap-4 py-4 px-4 my-4 rounded-2xl bg-stone-50 hover:bg-stone-100 hover:cursor-pointer">
+      <PostHeader 
+        subreddit={postData.subreddit}
+        subredditImg={postData.subredditImg}
+        title={postData.title}
+        created={created}
+      />
       <p className="text-sm">{postData.body}</p>
       {postData.post_hint === "image" ? (
-        <div className="flex justify-center rounded-2xl border-1 border-stone-300 bg-stone-100">
-          <img
-            className="w-md"
-            src={fixRedditUrl(postData.image)}
-            alt=""
-          />
+        <div
+          className={`rounded-2xl bg-center bg-cover border-1 border-gray-500 overflow-hidden`}
+          style={{ backgroundImage: `url(${fixRedditUrl(postData.image)})` }}
+        >
+          <div className="flex justify-center items-center backdrop-blur-2xl">
+            <img
+              className="max-h-150"
+              src={fixRedditUrl(postData.image)}
+              alt=""
+            />
+          </div>
         </div>
       ) : (
         <></>
       )}
       <div className="flex gap-4">
-        <Button text={postData.ups - postData.downs} />
-        <Button text={postData.comments} />
-        <Button text="Share" />
+        <Button btnType="votes" text={postData.ups - postData.downs} />
+        <Button btnType="comments" text={postData.comments} />
+        <Button btnType="share" text="Share" />
       </div>
     </div>
   );

@@ -2,7 +2,6 @@ import Sorts from "../features/Sorts/Sorts";
 import Posts from "../features/Posts/Posts";
 
 export default function Home() {
-  console.log("HOME RENDERED");
 
   return (
     <div className="w-full flex justify-center">

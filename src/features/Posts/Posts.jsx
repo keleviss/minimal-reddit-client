@@ -39,8 +39,11 @@ export default function Posts() {
 
   return (
     <ul>
-      {posts.map((post) => 
-        <Post key={post.id} postData={post} />
+      {posts.map((post) =>
+        <div key={post.id}>
+          <hr className="text-stone-200"></hr>
+          <Post postData={post} />
+        </div>
       )}
     </ul>
   );
