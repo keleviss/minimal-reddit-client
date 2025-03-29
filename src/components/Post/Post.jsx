@@ -13,10 +13,10 @@ export default function Post({ postData }) {
       try {
         const response = await fetch(`https://www.reddit.com/r/${postData.subreddit}/about.json`);
         const json = await response.json();
-        setSubredditIcon(json.data.icon_img || null); // Fallback to null if icon_img is not available
+        setSubredditIcon(json.data.icon_img || null);
       } catch (error) {
         console.error("Failed to fetch subreddit icon:", error);
-        setSubredditIcon(null); // Handle errors gracefully
+        setSubredditIcon(null);
       }
     };
 
@@ -26,7 +26,7 @@ export default function Post({ postData }) {
   const created = timeDiff(postData.created, Math.floor(Date.now() / 1000));
 
   return (
-    <div className="flex flex-col gap-4 py-4 px-4 my-4 rounded-2xl bg-stone-50 hover:bg-stone-100 hover:cursor-pointer">
+    <div className="flex flex-col gap-4 py-4 px-4 my-6 rounded-2xl  border-1 border-stone-400 hover:border-orange-600 hover:shadow-lg hover:cursor-pointer transition-all">
       <PostHeader
         subreddit={postData.subreddit}
         subredditImg={subredditIcon}
@@ -34,7 +34,6 @@ export default function Post({ postData }) {
         created={created}
       />
       <ReactMarkDown>{postData.selftext}</ReactMarkDown>
-      {/* <div dangerouslySetInnerHTML={{ __html: htmlText }}></div> */}
       <PostMedia postMedia={postData} />
       <div className="flex gap-4">
         <Button btnType="votes" text={postData.ups - postData.downs} />
