@@ -4,7 +4,7 @@ import styles from "./Filter.module.css";
 export default function Filter({ options }) {
   const [currentOption, setCurrentOption] = useState(options[0]);
 
-  function handleOptionClick({ target }) {
+  function handleChange({ target }) {
     setCurrentOption(target.value);
   }
 
@@ -18,9 +18,10 @@ export default function Filter({ options }) {
     <select
       className={styles.filter}
       value={currentOption}
+      onChange={handleChange}
     >
       {options.map((option, i) => 
-        <option onClick={handleOptionClick} key={`${i}-${option}`} value={option}>{option}</option>
+        <option key={`${i}-${option}`} value={option}>{option}</option>
       )}
     </select>
   );

@@ -12,7 +12,7 @@
 }
 
 .filtersContainer button {
-  color: var(--orange-highlight);
+  /* color: var(--orange-highlight); */
   background-color: transparent;
   padding: .5rem .8rem;
   border-radius: 999px;

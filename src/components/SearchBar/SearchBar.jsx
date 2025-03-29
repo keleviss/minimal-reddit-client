@@ -6,6 +6,7 @@ import { faSearch, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -15,8 +16,16 @@ export default function SearchBar() {
     }
   };
 
+  function handleFocus() {
+    setIsFocused(true);
+  }
+
+  function handleBlur() {
+    setIsFocused(false);
+  }
+
   return (
-    <form className={styles.SearchBarContainer} onSubmit={handleSubmit}>
+    <form className={`${styles.SearchBarContainer} ${isFocused ? styles.hovered : ""}`} onSubmit={handleSubmit}>
       <FontAwesomeIcon
         className={styles.SearchIcon}
         icon={faSearch}
@@ -29,6 +38,8 @@ export default function SearchBar() {
         placeholder="Search Reddit Minified"
         value={searchTerm}
         onChange={({ target }) => setSearchTerm(target.value)}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
       {searchTerm && (
         <FontAwesomeIcon
