@@ -10,17 +10,3 @@
   display: flex;
   gap: 1rem;
 }
-
-.filtersContainer button {
-  /* color: var(--orange-highlight); */
-  background-color: transparent;
-  padding: .5rem .8rem;
-  border-radius: 999px;
-  border: none;
-  font-weight: 600;
-}
-
-.filtersContainer button:hover {
-  cursor: pointer;
-  background-color: rgb(233, 233, 237);
-}

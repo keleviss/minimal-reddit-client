@@ -1,18 +1,17 @@
-import Filter from "../Filter/Filter";
+import Button from "../Button/Button";
 import styles from "./Filters.module.css";
 
-const sortingOptions = ["Best", "Hot", "New", "Top"];
+const buttons = ["Best", "Hot", "New", "Top", "Rising"];
 
 export default function Filters() {
-
-  console.log("FILTERS RENDERED");
 
   return (
     <div className={styles.filtersContainer}>
       <div className={styles.filtersGroup}>
-        <Filter options={sortingOptions}/>
+        {buttons.map((button, i) => 
+          <Button key={`${button}-${i}`} text={button}/>
+        )}
       </div>
-      <button className={styles.resetBtn}>Reset</button>
     </div>
   );
 }

@@ -1,14 +1,13 @@
-.filter {
+.Button {
   font-size: 14px;
   font-weight: 500;
-  /* color: var(--orange-highlight); */
   padding: 0.5rem 0.8rem;
   border-radius: 999px;
   border: none;
 }
 
-.filter:hover {
+.Button:hover {
   cursor: pointer;
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary-accent);
   color: whitesmoke;
 }
