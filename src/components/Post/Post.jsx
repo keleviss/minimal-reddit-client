@@ -1,27 +1,44 @@
 import Button from "../Button/Button";
 import PostHeader from "../PostHeader/PostHeader";
-import PostBody from "../PostBody/PostBody";
+import PostMedia from "../PostMedia/PostMedia";
 import { timeDiff } from "../../utils/timeDifference";
+import { useEffect, useState } from "react";
+import ReactMarkDown from "react-markdown";
 
 export default function Post({ postData }) {
+  const [subredditIcon, setSubredditIcon] = useState(null);
+
+  useEffect(() => {
+    const fetchSubredditIcon = async () => {
+      try {
+        const response = await fetch(`https://www.reddit.com/r/${postData.subreddit}/about.json`);
+        const json = await response.json();
+        setSubredditIcon(json.data.icon_img || null); // Fallback to null if icon_img is not available
+      } catch (error) {
+        console.error("Failed to fetch subreddit icon:", error);
+        setSubredditIcon(null); // Handle errors gracefully
+      }
+    };
+
+    fetchSubredditIcon();
+  }, [postData]);
 
   const created = timeDiff(postData.created, Math.floor(Date.now() / 1000));
 
   return (
     <div className="flex flex-col gap-4 py-4 px-4 my-4 rounded-2xl bg-stone-50 hover:bg-stone-100 hover:cursor-pointer">
-      <PostHeader 
+      <PostHeader
         subreddit={postData.subreddit}
-        subredditImg={postData.subredditImg}
+        subredditImg={subredditIcon}
         title={postData.title}
         created={created}
       />
-      <PostBody 
-        bodyText={postData.body}
-        postMedia={postData}
-      />
+      <ReactMarkDown>{postData.selftext}</ReactMarkDown>
+      {/* <div dangerouslySetInnerHTML={{ __html: htmlText }}></div> */}
+      <PostMedia postMedia={postData} />
       <div className="flex gap-4">
         <Button btnType="votes" text={postData.ups - postData.downs} />
-        <Button btnType="comments" text={postData.comments} />
+        <Button btnType="comments" text={postData.num_comments} />
         <Button btnType="share" text="Share" />
       </div>
     </div>
