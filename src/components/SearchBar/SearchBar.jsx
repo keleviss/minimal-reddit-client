@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./SearchBar.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -24,16 +23,21 @@ export default function SearchBar() {
     setIsFocused(false);
   }
 
+  let iconClasses = "hover:cursor-pointer";
+
   return (
-    <form className={`${styles.SearchBarContainer} ${isFocused ? styles.hovered : ""}`} onSubmit={handleSubmit}>
+    <form
+    className={`w-100 py-2 px-4 flex justify-between gap-2.5 items-center rounded-4xl border-1 ${isFocused ? "border-orange-600" : "border-stone-300"}`}
+      onSubmit={handleSubmit}
+    >
       <FontAwesomeIcon
-        className={styles.SearchIcon}
+        className={iconClasses}
         icon={faSearch}
         color="#FF3C00"
         onClick={handleSubmit}
       />
       <input
-        className={styles.SearchInput}
+        className="w-full border-0 outline-0 bg-transparent text-4.5"
         type="text"
         placeholder="Search Reddit Minified"
         value={searchTerm}
@@ -41,14 +45,13 @@ export default function SearchBar() {
         onFocus={handleFocus}
         onBlur={handleBlur}
       />
-      {searchTerm && (
-        <FontAwesomeIcon
-          className={styles.XIcon}
-          icon={faXmark}
-          color="#FF3C00"
-          onClick={() => setSearchTerm("")}
-        />
-      )}
+      <FontAwesomeIcon
+        className={iconClasses}
+        visibility={searchTerm ? "visible" : "hidden"}
+        icon={faXmark}
+        color="#FF3C00"
+        onClick={() => setSearchTerm("")}
+      />
     </form>
   );
 }
