@@ -21,6 +21,11 @@ a {
 }
 
 .container {
+  width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.container-fit {
+  width: 800px;
 }

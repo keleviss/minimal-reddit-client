@@ -1,0 +1,38 @@
+.filter {
+  color: var(--orange-highlight);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  display: flex;
+  justify-content: center;
+}
+
+.filter:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+.filterOptions {
+  margin: 0;
+  list-style-type: none;
+  position: absolute;
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: lightgray;
+}
+
+.filterOptions li {
+  text-align: center;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.filterOptions li:hover {
+  background-color: rgb(160, 160, 160);
+}
