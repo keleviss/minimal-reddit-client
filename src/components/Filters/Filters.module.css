@@ -22,5 +22,5 @@
 
 .filtersContainer button:hover {
   cursor: pointer;
-  background-color: gray;
+  background-color: rgb(233, 233, 237);
 }
