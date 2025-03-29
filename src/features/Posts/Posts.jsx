@@ -31,7 +31,13 @@ const posts = [
     comments: 42,
     post_hint: "",
     is_gallery: false,
-    is_video: false,
+    is_video: true,
+    secure_media: {
+      reddit_video: {
+        dash_url: "https://v.redd.it/dsmvv9ew7kre1/DASHPlaylist.mpd?a=1745863997%2CZWVlMmFiNDg5YTM4MDA2YmY4ZWVhYjI1ZTk3NWI5NzlhN2I1MDk3Y2RmMzY1NmYzNDMxMGFlYWI0NDQ0NmJkMw%3D%3D&amp;v=1&amp;f=sd",
+        hls_url: "https://v.redd.it/dsmvv9ew7kre1/HLSPlaylist.m3u8?a=1745863997%2CMzNiNDA2ODk3MTg1MzJiNWRlNWU1MDI5MWE3ZjRjMTM3YjFkMGM3MDk2NWU1YmQyNDZlZGFiY2VlOGZhZjg3NA%3D%3D&amp;v=1&amp;f=sd",
+      }
+    }
   }
 ];
 
