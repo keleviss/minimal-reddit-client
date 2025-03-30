@@ -10,3 +10,11 @@
 * {
   font-family: "Montserrat", sans-serif;
 }
+
+.no-tailwind-markdown * {
+  all: revert; /* Resets inherited Tailwind styles */
+}
+
+.no-tailwind-markdown p {
+  margin: 0.5rem 0;
+}
