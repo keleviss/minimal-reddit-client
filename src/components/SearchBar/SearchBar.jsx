@@ -12,6 +12,8 @@ export default function SearchBar() {
     e.preventDefault();
     if (searchTerm.trim()) {
       navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
+    } else {
+      console.log("Search term is empty");
     }
   };
 

@@ -7,7 +7,7 @@ export default function Posts() {
     <ul>
       {data.children.map((post) =>
         <div key={post.data.id}>
-          {/* <hr className="text-stone-400"></hr> */}
+          <hr className="text-stone-400"></hr>
           <Post postData={post.data} />
         </div>
       )}

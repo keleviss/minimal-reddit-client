@@ -39,14 +39,18 @@ const VideoPlayer = ({ dashUrl, hlsUrl }) => {
   }, [hlsUrl, dashUrl]);
 
   return (
-    <div>
-      <video 
-        className='max-h-175'
-        ref={videoRef}
-        controls
-      >
-        Your browser does not support the video tag.
-      </video>
+    <div className="rounded-2xl bg-black border-1 border-gray-500 overflow-hidden">
+      <div className="flex justify-center items-center backdrop-blur-2xl">
+        <div>
+          <video
+            className='max-h-175'
+            ref={videoRef}
+            controls
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
     </div>
   );
 };
