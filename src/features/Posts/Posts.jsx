@@ -8,18 +8,22 @@ export default function Posts() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetchPosts("https://www.reddit.com/r/popular.json").then((response) => {
+    fetchPosts("/api/r/popular.json").then((response) => {
       const { data } = response;
       setPosts(data);
     })
   }, []);
 
+  if (!posts.children) {
+    return <p>Loading posts...</p>
+  }
+
   return (
-    <ul>
-      {posts.children && 
+    <ul className="mt-40">
+      {
         posts.children.map((post) =>
           <div key={post.data.id}>
-            <hr className="text-stone-400"></hr>
+            {/* <hr className="text-stone-400"></hr> */}
             <Post postData={post.data} />
           </div>
         )

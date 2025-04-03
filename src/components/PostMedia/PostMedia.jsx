@@ -12,7 +12,7 @@ export default function PostMedia({ postMedia }) {
   const { post_hint, is_video, is_gallery, preview, secure_media, media_metadata } = postMedia;
 
   if (post_hint === "image" && preview) {
-    const fixedImageUrl = fixRedditUrl(preview.images[0].source.ulr);
+    const fixedImageUrl = fixRedditUrl(preview.images[0].source.url);
 
     return (
       <Image imageURL={fixedImageUrl} />

@@ -24,7 +24,7 @@ export default function Sorts() {
   }
 
   return (
-    <div className="flex justify-between items-center py-6">
+    <div className="w-4xl fixed z-40 bg-white border-b-1 flex justify-between items-center mt-18 py-6">
       <div className="flex gap-4">
         {buttons.map((button, i) =>
           <Button 

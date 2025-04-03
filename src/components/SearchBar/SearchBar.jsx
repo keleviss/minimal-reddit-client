@@ -29,7 +29,7 @@ export default function SearchBar() {
 
   return (
     <form
-    className={`w-100 py-2 px-4 flex justify-between gap-2.5 items-center rounded-4xl border-1 ${isFocused ? "border-orange-600" : "border-stone-300"}`}
+    className={`md:w-100  py-2 px-4 flex justify-between gap-2.5 items-center rounded-4xl border-1 ${isFocused ? "border-orange-600" : "border-stone-300"}`}
       onSubmit={handleSubmit}
     >
       <FontAwesomeIcon
@@ -41,7 +41,7 @@ export default function SearchBar() {
       <input
         className="w-full border-0 outline-0 bg-transparent text-4.5"
         type="text"
-        placeholder="Search Reddit Minified"
+        placeholder="Search Reddit Mini"
         value={searchTerm}
         onChange={({ target }) => setSearchTerm(target.value)}
         onFocus={handleFocus}
