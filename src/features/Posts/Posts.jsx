@@ -8,7 +8,7 @@ export default function Posts() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetchPosts("/api/r/popular.json").then((response) => {
+    fetchPosts("https://www.reddit.com/r/popular.json").then((response) => {
       const { data } = response;
       setPosts(data);
     })
