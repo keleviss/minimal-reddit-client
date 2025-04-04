@@ -24,13 +24,13 @@ export default function Sorts() {
   }
 
   return (
-    <div className="w-4xl fixed z-40 bg-white border-b-1 flex justify-between items-center mt-18 py-6">
-      <div className="flex gap-4">
+    <div className="w-full fixed z-40 mt-18 px-4 lg:px-0 bg-white flex justify-center overflow-scroll">
+      <div className="w-4xl flex gap-4 py-6 border-b-1 border-b-stone-300">
         {buttons.map((button, i) =>
           <Button 
-            key={`${button.text}-${i}`} 
+            key={`${button.text}-${i}`}
             text={button.text} 
-            selected={button.selected} 
+            selected={button.selected}
             onClick={handleClick}
           />
         )}

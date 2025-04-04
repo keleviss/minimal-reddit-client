@@ -5,7 +5,7 @@ export default function Image({ imageURL }) {
       style={{ backgroundImage: `url(${imageURL})` }}
     >
       <div className="flex justify-center items-center backdrop-blur-2xl">
-        <img className="max-h-150" src={imageURL} alt="" />
+        <img className="w-full max-h-150" src={imageURL} alt="" />
       </div>
     </div>
   );

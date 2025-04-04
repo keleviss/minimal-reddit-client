@@ -1,8 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown, faComment, faShare } from '@fortawesome/free-solid-svg-icons';
 
+function formattedText(text) {
+  if (Number(text) >= 1000) {
+    const result = `${(Number(text) / 1000).toFixed(1)}k`;
+    return result;
+  }
+  return text;
+}
+
 export default function Button({ btnType, text, selected, ...props }) {
-  let buttonClasses = "text-sm font-medium py-1.5 px-3.5 rounded-full hover:cursor-pointer hover:text-white hover:bg-orange-600";
+  let buttonClasses = "text-[0.75rem] sm:text-sm font-medium py-1.5 px-3.5 rounded-full hover:cursor-pointer hover:text-white hover:bg-orange-600";
 
   if (selected) {
     buttonClasses += " text-white bg-orange-600";
@@ -13,10 +21,11 @@ export default function Button({ btnType, text, selected, ...props }) {
   let buttonContent;
 
   if (btnType === "votes") {
+
     buttonContent = (
       <>
         <FontAwesomeIcon icon={faArrowUp} />
-        {text}
+        {formattedText(text)}
         <FontAwesomeIcon icon={faArrowDown} />
       </>
     );
@@ -24,7 +33,7 @@ export default function Button({ btnType, text, selected, ...props }) {
     buttonContent = (
       <>
         <FontAwesomeIcon icon={faComment} />
-        {text}
+        {formattedText(text)}
       </>
     );
   } else if (btnType === "share") {

@@ -37,7 +37,7 @@ export default function Post({ postData }) {
         <ReactMarkDown>{postData.selftext}</ReactMarkDown>
       </div>
       <PostMedia postMedia={postData} />
-      <div className="flex gap-4">
+      <div className="flex gap-1 sm:gap-4">
         <Button btnType="votes" text={postData.ups - postData.downs} />
         <Button btnType="comments" text={postData.num_comments} />
         <Button btnType="share" text="Share" />

@@ -1,14 +1,33 @@
+import { useEffect, useState } from "react";
+import { fetchPosts } from "../api/fetchPosts";
 import Sorts from "../features/Sorts/Sorts";
 import Posts from "../features/Posts/Posts";
 
 export default function Home() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const localData = JSON.parse(localStorage.getItem("posts"));
+
+    if (localData) {
+      setPosts(localData);
+    } else {
+      fetchPosts("https://www.reddit.com/r/popular.json").then((response) => {
+        const { data } = response;
+        setPosts(data);
+        localStorage.setItem("posts", JSON.stringify(data));
+      })
+    }
+  }, []);
+
+  if (!posts.children) {
+    return <p>Loading posts...</p>
+  }
 
   return (
-    <div className="w-full flex justify-center px-4 lg:px-0">
-      <div className="w-4xl">
-        <Sorts />
-        <Posts />
-      </div>
-    </div>
+    <>
+      <Sorts />
+      <Posts posts={posts} />
+    </>
   );
 }
