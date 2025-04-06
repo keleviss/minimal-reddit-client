@@ -1,13 +1,14 @@
+// import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import PostHeader from "../PostHeader/PostHeader";
 import PostMedia from "../PostMedia/PostMedia";
 import { timeDiff } from "../../utils/timeDifference";
-// import { useEffect, useState } from "react";
 import ReactMarkDown from "react-markdown";
 
 export default function Post({ postData }) {
   // const [subredditIcon, setSubredditIcon] = useState(null);
 
+  // Trying to fetch the subreddit icon, but reddit limits the number of request that can be made per seconds
   // useEffect(() => {
   //   const fetchSubredditIcon = async () => {
   //     try {
@@ -28,16 +29,16 @@ export default function Post({ postData }) {
   return (
     <div className="flex flex-col gap-2 py-4 px-4 my-6 rounded-2xl border-1 border-stone-400 hover:border-orange-600 hover:shadow-lg hover:cursor-pointer transition-all">
       <PostHeader
-        subreddit={postData.subreddit}
-        // subredditImg={subredditIcon}
+        // subreddit={postData.subreddit}
+        subredditImg={subredditIcon}
         title={postData.title}
         created={created}
       />
-      <div className="no-tailwind-markdown text-sm">
+      {postData.selftext && <div className="no-tailwind-markdown text-sm">
         <ReactMarkDown>{postData.selftext}</ReactMarkDown>
-      </div>
+      </div>}
       <PostMedia postMedia={postData} />
-      <div className="flex gap-1 sm:gap-4">
+      <div className="w-full flex gap-1 sm:gap-4 overflow-hidden">
         <Button btnType="votes" text={postData.ups - postData.downs} />
         <Button btnType="comments" text={postData.num_comments} />
         <Button btnType="share" text="Share" />

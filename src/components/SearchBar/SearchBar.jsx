@@ -39,7 +39,7 @@ export default function SearchBar() {
         onClick={handleSubmit}
       />
       <input
-        className="w-full border-0 outline-0 bg-transparent text-4.5"
+        className="w-full border-0 outline-0 bg-transparent text-4.5 text-stone-100"
         type="text"
         placeholder="Search Reddit Mini"
         value={searchTerm}
