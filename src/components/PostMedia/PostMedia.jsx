@@ -1,6 +1,6 @@
 import ImageGallery from "./ImageGallery/ImageGallery";
 import VideoPlayer from "./VideoPlayer/VideoPlayer";
-import Image from "./Image/Image";
+import PostImage from "./PostImage/PostImage";
 
 function fixRedditUrl(url) {
   return url ? url.replace(/&amp;/g, "&") : url;
@@ -15,7 +15,7 @@ export default function PostMedia({ postMedia }) {
     const fixedImageUrl = fixRedditUrl(preview.images[0].source.url);
 
     return (
-      <Image imageURL={fixedImageUrl} />
+      <PostImage imageURL={fixedImageUrl} />
     );
   }
 
