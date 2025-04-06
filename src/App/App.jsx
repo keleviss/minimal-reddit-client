@@ -9,10 +9,12 @@ export default function App() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />}>
+          <Route path=":sort" element={<Home />} />
+        </Route>
         <Route path="/search" element={<SearchResults />} />
         <Route path="/post" element={<PostDetails />} />
       </Routes>
     </BrowserRouter>
   );
-};
+}
