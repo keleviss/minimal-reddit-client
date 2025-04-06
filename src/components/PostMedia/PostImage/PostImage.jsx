@@ -26,7 +26,8 @@ export default function PostImage({ imageURL }) {
           <img
             onLoad={handleImageLoad}
             onError={handleImageError}
-            className="max-h-150"
+            className="max-h-150 transition-all duration-500 ease-in-out"
+            style={{ opacity: isLoading ? 0 : 1 }}
             src={imageURL}
             alt=""
           />
