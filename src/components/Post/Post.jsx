@@ -29,8 +29,8 @@ export default function Post({ postData }) {
   return (
     <div className="flex flex-col gap-2 py-4 px-4 my-6 rounded-2xl border-1 border-stone-400 hover:border-orange-600 hover:shadow-lg hover:cursor-pointer transition-all">
       <PostHeader
-        // subreddit={postData.subreddit}
-        subredditImg={subredditIcon}
+        subreddit={postData.subreddit}
+        // subredditImg={subredditIcon}
         title={postData.title}
         created={created}
       />

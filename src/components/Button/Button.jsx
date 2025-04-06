@@ -1,5 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp, faArrowDown, faComment, faShare } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUp,
+  faArrowDown,
+  faComment,
+  faShare,
+} from "@fortawesome/free-solid-svg-icons";
 
 function formattedText(text) {
   if (Number(text) >= 1000) {
@@ -10,7 +15,8 @@ function formattedText(text) {
 }
 
 export default function Button({ btnType, text, selected, ...props }) {
-  let buttonClasses = "text-[0.75rem] sm:text-sm font-medium py-1.5 px-3.5 rounded-full hover:cursor-pointer hover:text-white hover:bg-orange-600";
+  let buttonClasses =
+    "text-[0.75rem] sm:text-sm font-medium py-1.5 px-3.5 rounded-full hover:cursor-pointer hover:text-white hover:bg-orange-600";
 
   if (selected) {
     buttonClasses += " text-white bg-orange-600";
@@ -21,7 +27,6 @@ export default function Button({ btnType, text, selected, ...props }) {
   let buttonContent;
 
   if (btnType === "votes") {
-
     buttonContent = (
       <>
         <FontAwesomeIcon icon={faArrowUp} />
@@ -48,13 +53,10 @@ export default function Button({ btnType, text, selected, ...props }) {
   }
 
   return (
-    <button
-      className={buttonClasses}
-      {...props}
-    >
-      <div className='flex gap-2 items-center'>
+    <button className={buttonClasses} {...props}>
+      <span className="flex gap-2 items-center">
         {buttonContent}
-      </div>
+      </span>
     </button>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button/Button";
-import { createSearchParams, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const initialButtons = [
   { text: "Best", value: "best", selected: true },
@@ -32,7 +32,7 @@ export default function Sorts() {
 
   return (
     <div className="w-full fixed z-40 mt-18 px-4 lg:px-0 bg-white flex justify-center">
-      <div className="w-4xl flex gap-4 py-6 border-b-1 border-b-stone-300">
+      <div className="w-4xl flex gap-4 py-6 border-b-1 border-b-stone-300 overflow-x-scroll sm:overflow-auto">
         {buttons.map((button, i) => (
           <Button
             key={`${button.text}-${i}`}

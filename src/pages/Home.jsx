@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchData } from "../api/fetchPosts";
 import Sorts from "../features/Sorts/Sorts";
 import Posts from "../features/Posts/Posts";
