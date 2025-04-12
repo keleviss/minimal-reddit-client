@@ -16,7 +16,7 @@ function formattedText(text) {
 
 export default function Button({ btnType, text, selected, ...props }) {
   let buttonClasses =
-    "text-[0.75rem] sm:text-sm font-medium py-1.5 px-3.5 rounded-full hover:cursor-pointer hover:text-white hover:bg-orange-600";
+    "text-[0.7rem] sm:text-sm font-medium py-1.5 px-3.5 rounded-full hover:cursor-pointer hover:text-white hover:bg-orange-600";
 
   if (selected) {
     buttonClasses += " text-white bg-orange-600";
@@ -54,7 +54,7 @@ export default function Button({ btnType, text, selected, ...props }) {
 
   return (
     <button className={buttonClasses} {...props}>
-      <span className="flex gap-2 items-center">
+      <span className="flex gap-1 sm:gap-2 items-center">
         {buttonContent}
       </span>
     </button>

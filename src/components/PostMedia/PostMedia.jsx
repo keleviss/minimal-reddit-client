@@ -25,7 +25,7 @@ const PostMedia = ({ postMedia }) => {
   if (!postMedia) return null;
 
   return (
-    <div ref={ref}>
+    <div className="w-full" ref={ref}>
       {inView && (
         <>
           {post_hint === "image" && preview && (
