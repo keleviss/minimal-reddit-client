@@ -16,7 +16,7 @@ function formattedText(text) {
 
 export default function Button({ btnType, text, selected, ...props }) {
   let buttonClasses =
-    "text-[0.7rem] sm:text-sm font-medium py-1.5 px-3.5 rounded-full hover:cursor-pointer hover:text-white hover:bg-orange-600";
+    "text-[0.7rem] sm:text-sm font-medium py-1.5 px-3.5 rounded-full hover:cursor-pointer hover:text-white hover:bg-orange-600 active:bg-orange-900";
 
   if (selected) {
     buttonClasses += " text-white bg-orange-600";
@@ -29,7 +29,7 @@ export default function Button({ btnType, text, selected, ...props }) {
   if (btnType === "votes") {
     buttonContent = (
       <>
-        <FontAwesomeIcon icon={faArrowUp} />
+        <FontAwesomeIcon icon={faArrowUp} />  
         {formattedText(text)}
         <FontAwesomeIcon icon={faArrowDown} />
       </>

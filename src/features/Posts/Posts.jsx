@@ -6,7 +6,6 @@ export default function Posts({ posts, isFetchingCurrent, isFetchingNext, setLas
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
-    delay: 2000,
   });
 
   useEffect(() => {
@@ -24,7 +23,7 @@ export default function Posts({ posts, isFetchingCurrent, isFetchingNext, setLas
         {!isFetchingCurrent && posts && (
           <ul>
             {posts.children.map((post, i) =>
-              i === posts.children.length - 1 ? (
+              i === posts.children.length - 2 ? (
                 <div key={post.data.id} ref={ref}>
                   <Post postData={post.data} />
                 </div>
