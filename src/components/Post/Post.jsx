@@ -27,7 +27,7 @@ export default function Post({ postData }) {
   const created = timeDiff(postData.created, Math.floor(Date.now() / 1000));
 
   return (
-    <div className="flex flex-col gap-2 py-4 px-4 my-6 sm:rounded-2xl border-b-1 sm:border-1 border-stone-400 hover:border-orange-600 hover:shadow-lg hover:cursor-pointer transition-all">
+    <div className="flex flex-col gap-2 py-4 px-4 sm:my-6 sm:rounded-2xl border-b-1 sm:border-1 border-stone-400 hover:border-orange-600 hover:shadow-lg hover:cursor-pointer transition-all">
       <PostHeader
         subreddit={postData.subreddit}
         // subredditImg={subredditIcon}
