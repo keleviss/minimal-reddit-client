@@ -1,3 +1,4 @@
+import { useInView } from "react-intersection-observer";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import VideoPlayer from "./VideoPlayer/VideoPlayer";
 import PostImage from "./PostImage/PostImage";
@@ -6,39 +7,47 @@ function fixRedditUrl(url) {
   return url ? url.replace(/&amp;/g, "&") : url;
 }
 
-export default function PostMedia({ postMedia }) {
+const PostMedia = ({ postMedia }) => {
+  const { ref, inView, entry } = useInView({
+    triggerOnce: true,
+    rootMargin: "500px",
+  });
+
+  const {
+    post_hint,
+    is_video,
+    is_gallery,
+    preview,
+    secure_media,
+    media_metadata,
+  } = postMedia;
+
   if (!postMedia) return null;
 
-  const { post_hint, is_video, is_gallery, preview, secure_media, media_metadata } = postMedia;
+  return (
+    <div ref={ref}>
+      {inView && (
+        <>
+          {post_hint === "image" && preview && (
+            <PostImage imageURL={fixRedditUrl(preview.images[0].source.url)} />
+          )}
+          {is_video && secure_media?.reddit_video && (
+            <VideoPlayer
+              dashUrl={fixRedditUrl(secure_media.reddit_video.dash_url)}
+              hlsUrl={fixRedditUrl(secure_media.reddit_video.hls_url)}
+            />
+          )}
+          {is_gallery && media_metadata && (
+            <ImageGallery
+              imageURLs={Object.keys(media_metadata).map((image) =>
+                fixRedditUrl(media_metadata[image].s.u)
+              )}
+            />
+          )}
+        </>
+      )}
+    </div>
+  );
+};
 
-  if (post_hint === "image" && preview) {
-    const fixedImageUrl = fixRedditUrl(preview.images[0].source.url);
-
-    return (
-      <PostImage imageURL={fixedImageUrl} />
-    );
-  }
-
-  if (is_video && secure_media?.reddit_video) {
-    const { dash_url, hls_url } = secure_media.reddit_video;
-
-    return (
-      <VideoPlayer
-        dashUrl={fixRedditUrl(dash_url)}
-        hlsUrl={fixRedditUrl(hls_url)}
-      />
-    );
-  }
-
-  if (is_gallery && media_metadata) {
-    const imageURLs = Object.keys(media_metadata).map(image => {
-      return fixRedditUrl(media_metadata[image].s.u);
-    });
-
-    return (
-      <ImageGallery imageURLs={imageURLs} />
-    );
-  }
-
-  return null;
-}
+export default PostMedia;

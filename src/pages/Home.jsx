@@ -8,32 +8,26 @@ export default function Home() {
   const [posts, setPosts] = useState();
   const [errorFetchingPosts, setErrorFetchingPosts] = useState();
   const [isFetching, setIsFetching] = useState(false);
-
-  // const localData = JSON.parse(localStorage.getItem("posts"));
-  // if (localData && !posts) {
-  //   setPosts(localData);
-  // }
+  
 
   const { sort } = useParams();
 
   useEffect(() => {
     async function fetchPosts() {
-      // if (!localData) {
-        try {
-          setIsFetching(true);
-          const { data } = await fetchData(
-            `https://www.reddit.com/r/popular/${sort ? sort : ""}.json`
-          );
-          setPosts(data);
-          localStorage.setItem("posts", JSON.stringify(data));
-        } catch (error) {
-          setErrorFetchingPosts({
-            message:
-              error.message ||
-              "Could not retrieve reddit posts. Please try again later.",
-          });
-        }
-      // }
+      try {
+        setIsFetching(true);
+        const { data } = await fetchData(
+          `https://www.reddit.com/r/popular/${sort ? sort : ""}.json`
+        );
+        setPosts(data);
+        localStorage.setItem("posts", JSON.stringify(data));
+      } catch (error) {
+        setErrorFetchingPosts({
+          message:
+            error.message ||
+            "Could not retrieve reddit posts. Please try again later.",
+        });
+      }
     }
 
     fetchPosts();
@@ -47,10 +41,7 @@ export default function Home() {
   return (
     <>
       <Sorts />
-      <Posts
-        posts={posts}
-        isFetching={isFetching}
-      />
+      <Posts posts={posts} isFetching={isFetching} />
     </>
   );
 }
