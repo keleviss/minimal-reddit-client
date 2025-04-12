@@ -15,8 +15,8 @@ export default function PostImage({ imageURL }) {
 
   return (
     <div
-      className={`${
-        isLoading && "h-150"
+      className={`w-full ${
+        isLoading ? "h-150" : ""
       } rounded-2xl bg-center bg-cover border-1 border-gray-500 overflow-hidden`}
       style={{ backgroundImage: `url(${imageURL})` }}
     >

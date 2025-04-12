@@ -28,6 +28,7 @@ export default function Home() {
           error.message ||
           "Could not retrieve reddit posts. Please try again later.",
         });
+        setIsFetchingCurrent(false);
       }
     }
     
@@ -58,6 +59,7 @@ export default function Home() {
           error.message ||
           "Could not retrieve reddit posts. Please try again later.",
         });
+        setIsFetchingNext(false);
       }
     }
     
