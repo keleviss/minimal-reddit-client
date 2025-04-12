@@ -43,7 +43,7 @@ const VideoPlayer = ({ dashUrl, hlsUrl }) => {
       <div className="flex justify-center items-center backdrop-blur-2xl">
         <div>
           <video
-            className='w-full max-h-150'
+            className='w-full h-auto max-h-150'
             ref={videoRef}
             controls
           >

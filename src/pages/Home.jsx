@@ -5,34 +5,68 @@ import Posts from "../features/Posts/Posts";
 import { useParams } from "react-router";
 
 export default function Home() {
-  const [posts, setPosts] = useState();
+  const [currentPosts, setCurrentPosts] = useState();
+  const [isFetchingCurrent, setIsFetchingCurrent] = useState(false);
+  const [isFetchingNext, setIsFetchingNext] = useState(false);
+  const [lastPostInView, setLastPostInView] = useState(false);
   const [errorFetchingPosts, setErrorFetchingPosts] = useState();
-  const [isFetching, setIsFetching] = useState(false);
-  
 
   const { sort } = useParams();
 
   useEffect(() => {
     async function fetchPosts() {
+      setIsFetchingCurrent(true);
       try {
-        setIsFetching(true);
         const { data } = await fetchData(
-          `https://www.reddit.com/r/popular/${sort ? sort : ""}.json`
+          `https://www.reddit.com/r/popular/${sort ? sort : ""}.json?limit=10`
         );
-        setPosts(data);
-        localStorage.setItem("posts", JSON.stringify(data));
+        setCurrentPosts(data);
+        setIsFetchingCurrent(false);
       } catch (error) {
         setErrorFetchingPosts({
           message:
-            error.message ||
-            "Could not retrieve reddit posts. Please try again later.",
+          error.message ||
+          "Could not retrieve reddit posts. Please try again later.",
         });
+        setIsFetchingCurrent(false);
       }
     }
-
+    
     fetchPosts();
-    setIsFetching(false);
   }, [sort]);
+
+  useEffect(() => {
+    async function fetchMorePosts() {
+      setIsFetchingNext(true);
+      try {
+        const { data } = await fetchData(
+          `https://www.reddit.com/r/popular/${
+            sort ? sort : ""
+          }.json?limit=10&after=${currentPosts.after}`
+        );
+        setCurrentPosts((prevPosts) => ({
+          ...prevPosts,
+          after: data.after,
+          children: [
+            ...prevPosts.children,
+            ...data.children,
+          ]
+        }));
+        setIsFetchingNext(false);
+      } catch (error) {
+        setErrorFetchingPosts({
+          message:
+          error.message ||
+          "Could not retrieve reddit posts. Please try again later.",
+        });
+        setIsFetchingNext(false);
+      }
+    }
+    
+    if (lastPostInView) {
+      fetchMorePosts();
+    }
+  }, [lastPostInView]);
 
   if (errorFetchingPosts) {
     return <p>{errorFetchingPosts.message}</p>;
@@ -41,7 +75,14 @@ export default function Home() {
   return (
     <>
       <Sorts />
-      <Posts posts={posts} isFetching={isFetching} />
+      {currentPosts && (
+        <Posts
+          posts={currentPosts}
+          isFetchingCurrent={isFetchingCurrent}
+          isFetchingNext={isFetchingNext}
+          setLastPostInView={setLastPostInView}
+        />
+      )}
     </>
   );
 }

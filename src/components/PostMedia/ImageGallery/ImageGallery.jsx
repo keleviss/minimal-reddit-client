@@ -38,7 +38,7 @@ export default function ImageGallery({ imageURLs }) {
   }
 
   return (
-    <div className="grid items-center">
+    <div className="w-full grid items-center">
       {hasPrev && (
         <FontAwesomeIcon
           icon={faCircleArrowLeft}
