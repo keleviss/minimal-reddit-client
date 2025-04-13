@@ -43,7 +43,9 @@ export default function Post({ postData }) {
       <div className="w-full flex gap-1 sm:gap-4 overflow-hidden">
         <Button btnType="votes" text={postData.ups - postData.downs} />
         <Button btnType="comments" text={postData.num_comments} />
-        <Button btnType="share" text="Share" />
+        <div className="w-full flex justify-end">
+          <Button btnType="share" text="Share" />
+        </div>
       </div>
     </div>
   );

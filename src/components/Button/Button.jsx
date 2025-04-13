@@ -16,12 +16,12 @@ function formattedText(text) {
 
 export default function Button({ btnType, text, selected, ...props }) {
   let buttonClasses =
-    "text-[0.7rem] sm:text-sm font-medium py-1.5 px-3.5 rounded-full hover:cursor-pointer hover:text-white hover:bg-orange-600 active:bg-orange-900";
+    "text-[0.7rem] sm:text-sm font-medium py-1.5 px-3.5 rounded-full hover:cursor-pointer hover:text-white hover:bg-orange-600 active:bg-orange-600";
 
   if (selected) {
     buttonClasses += " text-white bg-orange-600";
   } else {
-    buttonClasses += " bg-stone-300";
+    buttonClasses += " border-1 border-stone-400 bg-stone-100 hover:border-orange-600";
   }
 
   let buttonContent;
@@ -42,6 +42,8 @@ export default function Button({ btnType, text, selected, ...props }) {
       </>
     );
   } else if (btnType === "share") {
+    buttonClasses += " "
+
     buttonContent = (
       <>
         <FontAwesomeIcon icon={faShare} />
@@ -54,7 +56,7 @@ export default function Button({ btnType, text, selected, ...props }) {
 
   return (
     <button className={buttonClasses} {...props}>
-      <span className="flex gap-1 sm:gap-2 items-center">
+      <span className="flex gap-1 sm:gap-2 items-center ">
         {buttonContent}
       </span>
     </button>
