@@ -35,7 +35,7 @@ export default function Post({ postData }) {
         created={created}
       />
       {postData.selftext && (
-        <div className="no-tailwind-markdown text-sm break-all">
+        <div className="no-tailwind-markdown text-sm break-normal">
           <ReactMarkDown>{postData.selftext}</ReactMarkDown>
         </div>
       )}

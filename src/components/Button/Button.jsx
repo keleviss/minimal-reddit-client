@@ -2,9 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowUp,
   faArrowDown,
-  faComment,
+  // faComment,
   faShare,
 } from "@fortawesome/free-solid-svg-icons";
+import { faComment, faShareFromSquare } from "@fortawesome/free-regular-svg-icons";
 
 function formattedText(text) {
   if (Number(text) >= 1000) {
@@ -16,7 +17,7 @@ function formattedText(text) {
 
 export default function Button({ btnType, text, selected, ...props }) {
   let buttonClasses =
-    "text-[0.7rem] sm:text-sm font-medium py-1.5 px-3.5 rounded-full hover:cursor-pointer hover:text-white hover:bg-orange-600 active:bg-orange-600";
+    "text-[0.7rem] sm:text-sm font-medium py-1.5 px-3.5 rounded-full hover:cursor-pointer hover:text-white hover:bg-orange-600 active:bg-orange-600 active:text-white";
 
   if (selected) {
     buttonClasses += " text-white bg-orange-600";
@@ -46,7 +47,7 @@ export default function Button({ btnType, text, selected, ...props }) {
 
     buttonContent = (
       <>
-        <FontAwesomeIcon icon={faShare} />
+        <FontAwesomeIcon icon={faShareFromSquare} />
         {text}
       </>
     );
