@@ -17,12 +17,12 @@ function formattedText(text) {
 
 export default function Button({ btnType, text, selected, ...props }) {
   let buttonClasses =
-    "text-[0.7rem] sm:text-sm font-medium py-1.5 px-3.5 rounded-full hover:cursor-pointer hover:text-white hover:bg-orange-600 active:bg-orange-600 active:text-white";
+    "text-[0.7rem] sm:text-sm font-medium py-1.5 px-3.5 rounded-full border-1 hover:cursor-pointer hover:text-white hover:bg-orange-600 active:bg-orange-600 active:text-white";
 
   if (selected) {
-    buttonClasses += " text-white bg-orange-600";
+    buttonClasses += " text-white bg-orange-600 border-orange-600";
   } else {
-    buttonClasses += " border-1 border-stone-400 bg-stone-100 hover:border-orange-600";
+    buttonClasses += " border-stone-400 bg-stone-100 hover:border-orange-600";
   }
 
   let buttonContent;
