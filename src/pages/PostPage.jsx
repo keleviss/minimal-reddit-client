@@ -1,4 +1,4 @@
-export default function PostDetails() {
+export default function PostPage() {
   return (
     <div>
       Post Details

@@ -17,18 +17,26 @@ export default function Sorts() {
 
   function handleClick({ target }) {
     const slug = target.textContent.toLowerCase();
-    navigate(`${slug}`);
+    navigate(`/${slug}`);
   }
-  
+
   useEffect(() => {
     const selectedButton = buttons.find((button) => button.value === sort);
-    const updatedButtons = initialButtons.map((button) => {
-      if (button.value === selectedButton.value) {
-        return { ...button, selected: true };
-      }
-      return { ...button, selected: false };
-    });
-    setButtons(updatedButtons);
+
+    if (!selectedButton) {
+      const updatedButtons = initialButtons.map((button, i) =>
+        i === 0 ? { ...button, selected: true } : button
+      );
+      setButtons(updatedButtons);
+    } else {
+      const updatedButtons = initialButtons.map((button) => {
+        if (button.value === selectedButton.value) {
+          return { ...button, selected: true };
+        }
+        return { ...button, selected: false };
+      });
+      setButtons(updatedButtons);
+    }
   }, [sort]);
 
   return (

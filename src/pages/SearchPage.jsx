@@ -1,54 +1,50 @@
+import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchData } from "../api/fetchPosts";
-import Sorts from "../features/Sorts/Sorts";
 import Posts from "../features/Posts/Posts";
-import { useParams } from "react-router";
+import Sorts from "../features/Sorts/Sorts";
 
-export default function Home() {
+export default function SearchPage() {
   const [currentPosts, setCurrentPosts] = useState();
   const [isFetchingCurrent, setIsFetchingCurrent] = useState(false);
   const [isFetchingNext, setIsFetchingNext] = useState(false);
   const [lastPostInView, setLastPostInView] = useState(false);
   const [errorFetchingPosts, setErrorFetchingPosts] = useState();
 
-  const { sort } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchTerm = searchParams.get("query");
 
   useEffect(() => {
     async function fetchPosts() {
       setIsFetchingCurrent(true);
-      try {
-        const { data } = await fetchData(
-          `https://www.reddit.com/r/popular/${sort ? sort : ""}.json?limit=10`
-        );
+      const { data } = await fetchData(
+        `https://www.reddit.com/search.json?q=${searchTerm}&limit=10`
+      );
+
+      if (data) {
         setCurrentPosts(data);
-        setIsFetchingCurrent(false);
-      } catch (error) {
-        setErrorFetchingPosts({
-          message:
-          error.message ||
-          "Could not retrieve reddit posts. Please try again later.",
-        });
-        setIsFetchingCurrent(false);
+      } else {
+        setErrorFetchingPosts(true);
       }
+      setIsFetchingCurrent(false);
     }
-    
+
     fetchPosts();
-  }, [sort]);
+  }, [searchTerm]);
 
   useEffect(() => {
     async function fetchMorePosts() {
       setIsFetchingNext(true);
       try {
         const { data } = await fetchData(
-          `https://www.reddit.com/r/popular/${
-            sort ? sort : ""
-          }.json?limit=10&after=${currentPosts.after}`
+          `https://www.reddit.com/search.json?q=${searchTerm}&limit=10&after=${currentPosts?.after || ''}`
         );
         setCurrentPosts((prevPosts) => ({
           ...prevPosts,
           after: data.after,
           children: [
-            ...prevPosts.children,
+            ...(prevPosts?.children ?? []),
             ...data.children,
           ]
         }));
@@ -66,10 +62,10 @@ export default function Home() {
     if (lastPostInView) {
       fetchMorePosts();
     }
-  }, [lastPostInView]);
+  }, [lastPostInView])
 
   if (errorFetchingPosts) {
-    return <p>{errorFetchingPosts.message}</p>;
+    return <p>Error fetching posts!</p>
   }
 
   return (

@@ -1,20 +1,23 @@
-import { BrowserRouter, Routes, Route } from "react-router";
-import NavBar from "../components/NavBar/NavBar";
-import Home from "../pages/Home";
-import SearchResults from "../pages/SearchResults";
-import PostDetails from "../pages/PostDetails";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HomePage from "../pages/HomePage";
+import SearchPage from "../pages/SearchPage";
+import PostPage from "../pages/PostPage";
+import Root from "../pages/Root";
+
+const router = createBrowserRouter([
+  { path: "/",
+    element: <Root />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: ":sort", element: <HomePage /> },
+      { path: "search", element: <SearchPage /> },
+      { path: "post", element: <PostPage /> },
+    ] 
+  },
+]);
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />}>
-          <Route path=":sort" element={<Home />} />
-        </Route>
-        <Route path="/search" element={<SearchResults />} />
-        <Route path="/post" element={<PostDetails />} />
-      </Routes>
-    </BrowserRouter>
+    <RouterProvider router={router} />
   );
 }

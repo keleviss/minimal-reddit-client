@@ -17,6 +17,14 @@ export default function SearchBar() {
     }
   };
 
+  function handleSearchChange(e) {
+    setSearchTerm(e.target.value);
+  }
+
+  function handleClearSearch() {
+    setSearchTerm("");
+  }
+
   function handleFocus() {
     setIsFocused(true);
   }
@@ -25,15 +33,13 @@ export default function SearchBar() {
     setIsFocused(false);
   }
 
-  let iconClasses = "hover:cursor-pointer";
-
   return (
     <form
     className={`md:w-100  py-2 px-4 flex justify-between gap-2.5 items-center rounded-4xl border-1 ${isFocused ? "border-orange-600" : "border-stone-300"}`}
       onSubmit={handleSubmit}
     >
       <FontAwesomeIcon
-        className={iconClasses}
+        className="hover:cursor-pointer"
         icon={faSearch}
         color="#FF3C00"
         onClick={handleSubmit}
@@ -43,16 +49,16 @@ export default function SearchBar() {
         type="text"
         placeholder="Search Reddit Mini"
         value={searchTerm}
-        onChange={({ target }) => setSearchTerm(target.value)}
+        onChange={(e) => handleSearchChange(e)}
         onFocus={handleFocus}
         onBlur={handleBlur}
       />
       <FontAwesomeIcon
-        className={iconClasses}
+        className="hover:cursor-pointer"
         visibility={searchTerm ? "visible" : "hidden"}
         icon={faXmark}
         color="#FF3C00"
-        onClick={() => setSearchTerm("")}
+        onClick={handleClearSearch}
       />
     </form>
   );
