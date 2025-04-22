@@ -40,8 +40,8 @@ export default function Sorts() {
   }, [sort]);
 
   return (
-    <div className="w-full fixed z-40 mt-14 sm:mt-18 px-4 lg:px-0 bg-white flex justify-center">
-      <div className="w-4xl flex gap-4 py-3 sm:py-6 border-b-1 border-b-stone-300 overflow-x-scroll sm:overflow-auto">
+    <div className="w-full fixed z-40 mt-14 sm:mt-18 bg-white flex justify-center">
+      <div className="w-4xl flex gap-4 py-3 px-4 lg:px-0 sm:py-6 border-b-1 border-b-stone-300 overflow-x-scroll sm:overflow-auto">
         {buttons.map((button, i) => (
           <Button
             key={`${button.text}-${i}`}

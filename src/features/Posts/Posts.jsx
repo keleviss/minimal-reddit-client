@@ -17,7 +17,7 @@ export default function Posts({ posts, isFetchingCurrent, isFetchingNext, setLas
   }, [inView]);
 
   return (
-    <div className="flex justify-center px-4 lg:px-0">
+    <div className="flex justify-center">
       <div className="w-4xl mt-30 sm:mt-40">
         {isFetchingCurrent && <p>Loading reddit posts...</p>}
         {!isFetchingCurrent && posts && (
