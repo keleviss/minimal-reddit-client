@@ -4,14 +4,14 @@ This is a React application that provides a minimal Reddit client with the follo
 
 ## Features
 
-- React + React Router: Built with modern React and client-side routing for seamless navigation.
-- TailwindCSS: Fully styled with TailwindCSS for clean, responsive, and customizable UI.
-- Reddit API Integration: Fetches real-time posts from the Reddit JSON API.
-- Search Functionality: Easily find posts using keywords via the integrated search bar.
-- Category Filters: Browse posts by Reddit categories like Best, Hot, and Rising.
-- Infinite Scrolling: Load more posts automatically as you scroll for a smoother experience.
-- Lazy Loading: Images and components load only when needed, improving performance.
-- Netlify Deployment: Live and continuously deployed on Netlify for fast global delivery.
+- **React + React Router**: Built with modern React and client-side routing for seamless navigation.
+- **TailwindCSS**: Fully styled with TailwindCSS for clean, responsive, and customizable UI.
+- **Reddit API Integration**: Fetches real-time posts from the Reddit JSON API.
+- **Search Functionality**: Easily find posts using keywords via the integrated search bar.
+- **Category Filters**: Browse posts by Reddit categories like Best, Hot, and Rising.
+- **Infinite Scrolling**: Load more posts automatically as you scroll for a smoother experience.
+- **Lazy Loading**: Images and components load only when needed, improving performance.
+- **Netlify Deployment**: Live and continuously deployed on Netlify for fast global delivery.
 
 ## Development
 
