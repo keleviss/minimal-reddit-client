@@ -18,7 +18,7 @@ This is a React application that provides a minimal Reddit client with the follo
   
 - **Lazy Loading**: Images and components load only when needed, improving performance.
   
-- **Netlify Deployment**: Live and continuously deployed on Netlify for fast global delivery.
+- **Netlify Deployment**: Deployed master branch on Netlify for simplicity.
 
 ## Development
 
