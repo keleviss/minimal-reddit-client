@@ -4,7 +4,7 @@ This is a React application that provides a minimal Reddit client with the follo
 
 ## Features
 
-- **React Framework**: Developed using React and React Router for seamless navigation.
+- **React**: Developed using React and React Router for seamless navigation.
 - **TailwindCSS**: Styled using TailwindCSS for a modern and responsive design.
 - **Reddit API Integration**: Fetches Reddit posts from the Reddit JSON API.
 - **Filter Options**: Posts can be filtered by categories such as Best, Hot, and Rising.
