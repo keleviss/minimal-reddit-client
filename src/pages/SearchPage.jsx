@@ -19,7 +19,8 @@ export default function SearchPage() {
     async function fetchPosts() {
       setIsFetchingCurrent(true);
       const { data } = await fetchData(
-        `https://www.reddit.com/search.json?q=${searchTerm}&limit=10`
+        `/.netlify/functions/reddit-proxy?q=${searchTerm}&limit=10`
+        // `https://www.reddit.com/search.json?q=${searchTerm}&limit=10`
       );
 
       if (data) {
@@ -38,7 +39,8 @@ export default function SearchPage() {
       setIsFetchingNext(true);
       try {
         const { data } = await fetchData(
-          `https://www.reddit.com/search.json?q=${searchTerm}&limit=10&after=${currentPosts?.after || ''}`
+          `/.netlify/functions/reddit-proxy?q=${searchTerm}&limit=10&after=${currentPosts?.after || ''}`
+          // `https://www.reddit.com/search.json?q=${searchTerm}&limit=10&after=${currentPosts?.after || ''}`
         );
         setCurrentPosts((prevPosts) => ({
           ...prevPosts,
