@@ -3,7 +3,7 @@ import {
   faArrowUp,
   faArrowDown,
   // faComment,
-  faShare,
+  // faShare,
 } from "@fortawesome/free-solid-svg-icons";
 import { faComment, faShareFromSquare } from "@fortawesome/free-regular-svg-icons";
 

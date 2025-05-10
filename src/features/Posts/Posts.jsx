@@ -19,7 +19,6 @@ export default function Posts({ posts, isFetchingCurrent, isFetchingNext, setLas
   return (
     <div className="flex justify-center">
       <div className="w-4xl mt-30 sm:mt-40">
-        {isFetchingCurrent && <p>Loading reddit posts...</p>}
         {!isFetchingCurrent && posts && (
           <ul>
             {posts.children.map((post, i) =>
@@ -35,7 +34,7 @@ export default function Posts({ posts, isFetchingCurrent, isFetchingNext, setLas
             )}
           </ul>
         )}
-        {isFetchingNext && <p>Loading reddit posts...</p>}
+        {isFetchingNext && <p className="my-20 text-center text-xl">🔃 Loading reddit posts...</p>}
       </div>
     </div>
   );

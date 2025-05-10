@@ -4,6 +4,7 @@ import PostHeader from "../PostHeader/PostHeader";
 import PostMedia from "../PostMedia/PostMedia";
 import { timeDiff } from "../../utils/timeDifference";
 import ReactMarkDown from "react-markdown";
+// import { useEffect, useState } from "react";
 
 export default function Post({ postData }) {
   // const [subredditIcon, setSubredditIcon] = useState(null);
@@ -12,7 +13,7 @@ export default function Post({ postData }) {
   // useEffect(() => {
   //   const fetchSubredditIcon = async () => {
   //     try {
-  //       const response = await fetch(`https://www.reddit.com/r/${postData.subreddit}/about.json`);
+  //       const response = await fetch(`/.netlify/functions/reddit-icons?subreddit=${postData.subreddit}`);
   //       const json = await response.json();
   //       setSubredditIcon(json.data.icon_img || null);
   //     } catch (error) {

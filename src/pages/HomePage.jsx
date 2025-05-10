@@ -22,16 +22,15 @@ export default function HomePage() {
         );
         setCurrentPosts(data);
         setIsFetchingCurrent(false);
-      } catch (error) {
+        setErrorFetchingPosts(null);
+      } catch {
         setErrorFetchingPosts({
-          message:
-          error.message ||
-          "Could not retrieve reddit posts. Please try again later.",
+          message: "Could not retrieve reddit posts. Please refresh or try again later.",
         });
         setIsFetchingCurrent(false);
       }
     }
-    
+
     fetchPosts();
   }, [sort]);
 
@@ -40,8 +39,7 @@ export default function HomePage() {
       setIsFetchingNext(true);
       try {
         const { data } = await fetchData(
-          `https://www.reddit.com/r/popular/${
-            sort || ""
+          `https://www.reddit.com/r/popular/${sort || ""
           }.json?limit=10&after=${currentPosts?.after || ''}`
         );
         setCurrentPosts((prevPosts) => ({
@@ -53,28 +51,28 @@ export default function HomePage() {
           ]
         }));
         setIsFetchingNext(false);
-      } catch (error) {
+        setErrorFetchingPosts(null);
+      } catch {
         setErrorFetchingPosts({
-          message:
-          error.message ||
-          "Could not retrieve reddit posts. Please try again later.",
+          message: "Could not retrieve reddit posts. Please refresh or try again later.",
         });
         setIsFetchingNext(false);
       }
     }
-    
+
     if (lastPostInView) {
       fetchMorePosts();
     }
   }, [lastPostInView]);
 
-  if (errorFetchingPosts) {
-    return <p>{errorFetchingPosts.message}</p>;
-  }
-
   return (
     <>
       <Sorts />
+      {isFetchingCurrent && <div className="flex justify-center">
+        <div className="w-4xl mt-30 sm:mt-40 text-center">
+          <p className="my-20 text-center text-xl">🔃 Loading reddit posts...</p>
+        </div>
+      </div>}
       {currentPosts && (
         <Posts
           posts={currentPosts}
@@ -83,6 +81,13 @@ export default function HomePage() {
           setLastPostInView={setLastPostInView}
         />
       )}
+      {errorFetchingPosts &&
+        <div className="flex justify-center">
+          <div className="w-4xl mt-30 sm:mt-40 text-center">
+            <p>{errorFetchingPosts.message}</p>
+          </div>
+        </div>
+      }
     </>
   );
 }

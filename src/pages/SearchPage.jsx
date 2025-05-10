@@ -18,17 +18,20 @@ export default function SearchPage() {
   useEffect(() => {
     async function fetchPosts() {
       setIsFetchingCurrent(true);
-      const { data } = await fetchData(
-        `/.netlify/functions/reddit-proxy?q=${searchTerm}&limit=10`
-        // `https://www.reddit.com/search.json?q=${searchTerm}&limit=10`
-      );
-
-      if (data) {
+      setErrorFetchingPosts(null);
+      try {
+        const { data } = await fetchData(
+          `/.netlify/functions/reddit-proxy?q=${searchTerm}&limit=10`
+          // `https://www.reddit.com/search.json?q=${searchTerm}&limit=10`
+        );
         setCurrentPosts(data);
-      } else {
-        setErrorFetchingPosts(true);
+        setIsFetchingCurrent(false);
+      } catch {
+        setErrorFetchingPosts({
+          message: "Could not retrieve reddit posts. Please refresh or try again later.",
+        });
+        setIsFetchingCurrent(false);
       }
-      setIsFetchingCurrent(false);
     }
 
     fetchPosts();
@@ -37,42 +40,41 @@ export default function SearchPage() {
   useEffect(() => {
     async function fetchMorePosts() {
       setIsFetchingNext(true);
+      setErrorFetchingPosts(null);
       try {
         const { data } = await fetchData(
           `/.netlify/functions/reddit-proxy?q=${searchTerm}&limit=10&after=${currentPosts?.after || ''}`
           // `https://www.reddit.com/search.json?q=${searchTerm}&limit=10&after=${currentPosts?.after || ''}`
         );
         setCurrentPosts((prevPosts) => ({
-          ...prevPosts,
-          after: data.after,
+          ...data,
           children: [
             ...(prevPosts?.children ?? []),
             ...data.children,
           ]
         }));
         setIsFetchingNext(false);
-      } catch (error) {
+      } catch {
         setErrorFetchingPosts({
-          message:
-          error.message ||
-          "Could not retrieve reddit posts. Please try again later.",
+          message: "Could not retrieve reddit posts. Please refresh or try again later.",
         });
         setIsFetchingNext(false);
       }
     }
-    
+
     if (lastPostInView) {
       fetchMorePosts();
     }
   }, [lastPostInView])
 
-  if (errorFetchingPosts) {
-    return <p>Error fetching posts!</p>
-  }
-
   return (
     <>
       <Sorts />
+      {isFetchingCurrent && <div className="flex justify-center">
+        <div className="w-4xl mt-30 sm:mt-40 text-center">
+          <p className="my-20 text-center text-xl">🔃 Loading reddit posts...</p>
+        </div>
+      </div>}
       {currentPosts && (
         <Posts
           posts={currentPosts}
@@ -81,6 +83,13 @@ export default function SearchPage() {
           setLastPostInView={setLastPostInView}
         />
       )}
+      {errorFetchingPosts &&
+        <div className="flex justify-center">
+          <div className="w-4xl mt-30 sm:mt-40 text-center">
+            <p>{errorFetchingPosts.message}</p>
+          </div>
+        </div>
+      }
     </>
   );
 }
