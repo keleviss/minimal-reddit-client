@@ -21,7 +21,7 @@ export default function SearchPage() {
       setErrorFetchingPosts(null);
       try {
         const { data } = await fetchData(
-          `/.netlify/functions/reddit-proxy?q=${searchTerm}&limit=10`
+          `/.netlify/functions/reddit-search?q=${searchTerm}&limit=10`
           // `https://www.reddit.com/search.json?q=${searchTerm}&limit=10`
         );
         setCurrentPosts(data);
@@ -43,7 +43,7 @@ export default function SearchPage() {
       setErrorFetchingPosts(null);
       try {
         const { data } = await fetchData(
-          `/.netlify/functions/reddit-proxy?q=${searchTerm}&limit=10&after=${currentPosts?.after || ''}`
+          `/.netlify/functions/reddit-search?q=${searchTerm}&limit=10&after=${currentPosts?.after || ''}`
           // `https://www.reddit.com/search.json?q=${searchTerm}&limit=10&after=${currentPosts?.after || ''}`
         );
         setCurrentPosts((prevPosts) => ({
