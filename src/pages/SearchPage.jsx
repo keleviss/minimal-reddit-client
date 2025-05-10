@@ -11,7 +11,7 @@ export default function SearchPage() {
   const [lastPostInView, setLastPostInView] = useState(false);
   const [errorFetchingPosts, setErrorFetchingPosts] = useState();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const searchTerm = searchParams.get("query");
 
